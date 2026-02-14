@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For Yash ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to bottom right, #ffe6f0, #ffd6e7);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      color: #333;
-    }
+<title>For Yash ❤️</title>
 
-    h1 {
-      color: #ff4d88;
-      font-size: 42px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #ffe6f0, #ffd6e7);
+  overflow-x: hidden;
+}
 
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+.container {
+  padding: 40px;
+}
 
-    button {
-      background: #ff4d88;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+h1 {
+  color: #ff4d88;
+  font-size: 42px;
+}
 
-    button:hover {
-      background: #ff1a66;
-    }
-  </style>
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button {
+  background: #ff4d88;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff1a66;
+}
+
+.heart {
+  position: fixed;
+  bottom: -10px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+#mainContent {
+  display: none;
+}
+</style>
 </head>
 
 <body>
 
+<div id="passwordScreen" class="container">
+  <h1>Enter Password 💌</h1>
+  <input type="password" id="passwordInput" placeholder="Hint: Something cute 👀" />
+  <br><br>
+  <button onclick="checkPassword()">Enter</button>
+  <p id="wrong" style="color:red; display:none;">Wrong password 😛</p>
+</div>
+
+<div id="mainContent" class="container">
+
   <h1>Hi Yash 💕</h1>
 
   <div class="box">
-    <p>You are my favorite person in the entire universe.</p>
-    <p>Every day with you feels like magic.</p>
+    <p>Take my hand, take my whole life too...</p>
+    <p>Because I can't help falling in love with you ❤️</p>
   </div>
 
   <div class="box">
     <button onclick="showMessage()">Click for a Surprise 💌</button>
     <p id="secret" style="display:none; margin-top:15px;">
-      I am so lucky to have you. Forever yours ❤️
+      Forever your yashubebu girl 💞
     </p>
   </div>
 
+  <div class="box">
+    <h2>Our Song 🎵</h2>
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed/vGJTaP6anOU"
+      title="Can't Help Falling in Love"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+</div>
+
 <script>
+function checkPassword() {
+  var input = document.getElementById("passwordInput").value;
+  if(input.toLowerCase() === "yashubebu") {
+    document.getElementById("passwordScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+    startHearts();
+  } else {
+    document.getElementById("wrong").style.display = "block";
+  }
+}
+
 function showMessage() {
   document.getElementById("secret").style.display = "block";
+}
+
+function startHearts() {
+  setInterval(function() {
+    var heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 500);
 }
 </script>
 
