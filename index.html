@@ -1,131 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Yash ❤️</title>
+<title>For Yash 💖</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: black;
+  color: white;
   text-align: center;
-  background: linear-gradient(to bottom right, #ffe6f0, #ffd6e7);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-.container {
-  padding: 40px;
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
 }
 
-h1 {
-  color: #ff4d88;
-  font-size: 42px;
-}
-
-.box {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  margin: 20px auto;
-  max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.active {
+  opacity: 1;
 }
 
 button {
-  background: #ff4d88;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 20px;
+  padding: 10px 20px;
   font-size: 16px;
+  border: none;
+  background: pink;
+  color: black;
+  border-radius: 20px;
   cursor: pointer;
 }
 
-button:hover {
-  background: #ff1a66;
-}
-
-.heart {
-  position: fixed;
-  bottom: -10px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-#mainContent {
-  display: none;
+img {
+  max-width: 80%;
+  border-radius: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="passwordScreen" class="container">
-  <h1>Enter Password 💌</h1>
-  <input type="password" id="passwordInput" placeholder="Hint: Something cute 👀" />
+<!-- Slide 1 -->
+<div class="slide active" id="slide1">
+  <h1>HI YASHUUUUUUU</h1>
+  <p>Please enter the password to move forward</p>
+  <input type="password" id="password">
   <br><br>
   <button onclick="checkPassword()">Enter</button>
-  <p id="wrong" style="color:red; display:none;">Wrong password 😛</p>
 </div>
 
-<div id="mainContent" class="container">
+<!-- Slide 2 -->
+<div class="slide" id="slide2">
+  <h2>I miss you 🤍</h2>
+  <img src="YOUR_IMAGE_LINK_HERE">
+  <br><br>
+  <button onclick="nextSlide(3)">Next</button>
+</div>
 
-  <h1>Hi Yash 💕</h1>
+<!-- Slide 3 -->
+<div class="slide" id="slide3">
+  <h2>Can't Help Falling in Love 🎶</h2>
+  <iframe style="border-radius:12px"
+  src="https://open.spotify.com/embed/track/44AyOl4qVkzS48vBsbNXaC"
+  width="300" height="380"
+  frameBorder="0"
+  allowfullscreen=""
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
+  <br><br>
+  <button onclick="nextSlide(4)">Next</button>
+</div>
 
-  <div class="box">
-    <p>Take my hand, take my whole life too...</p>
-    <p>Because I can't help falling in love with you ❤️</p>
-  </div>
-
-  <div class="box">
-    <button onclick="showMessage()">Click for a Surprise 💌</button>
-    <p id="secret" style="display:none; margin-top:15px;">
-      Forever your yashubebu girl 💞
-    </p>
-  </div>
-
-  <div class="box">
-    <h2>Our Song 🎵</h2>
-    <iframe width="100%" height="315"
-      src="https://www.youtube.com/embed/vGJTaP6anOU"
-      title="Can't Help Falling in Love"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
-
+<!-- Slide 4 -->
+<div class="slide" id="slide4">
+  <h2>yashuuuu, thankyou for everything. I love u sm. 🤍</h2>
+  <p>(Excuse my noob ass pls, I tried)</p>
 </div>
 
 <script>
 function checkPassword() {
-  var input = document.getElementById("passwordInput").value;
-  if(input.toLowerCase() === "yashubebu") {
-    document.getElementById("passwordScreen").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-    startHearts();
+  var pass = document.getElementById("password").value;
+  if(pass === "yashubebu") {
+    nextSlide(2);
   } else {
-    document.getElementById("wrong").style.display = "block";
+    alert("Wrong password 😏");
   }
 }
 
-function showMessage() {
-  document.getElementById("secret").style.display = "block";
-}
-
-function startHearts() {
-  setInterval(function() {
-    var heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 500);
+function nextSlide(num) {
+  var slides = document.getElementsByClassName("slide");
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+  }
+  document.getElementById("slide" + num).classList.add("active");
 }
 </script>
 
